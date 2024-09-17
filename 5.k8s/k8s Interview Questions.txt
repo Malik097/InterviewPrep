@@ -1,0 +1,135 @@
+
+Kubernetes:- 
+Kubernetes interview Questions :
+==========================================
+1) what is taint and toleration? 
+Taints are attributes applied to individual nodes in a Kubernetes cluster. A taint consists of a key, a value, and an effect.
+The key is a string that describes the taint's purpose, and the value is an optional string that provides additional information.
+We can add taint to the node like this
+--->> kubectl taint nodes <node_name> key=value:effect
+
+Tolerations are attributes specified in a pod's configuration that allow the pod to tolerate the taints on nodes. In other words, they define which taints a pod is willing to tolerate.
+A pod can have multiple tolerations, each with a key, an optional value, and an operator (e.g., Exists or Equal).
+
+By using taints and tolerations, you can control which pods are allowed to run on specific nodes based on their attributes and requirements. This feature is particularly useful for scenarios where you need to segregate workloads, allocate resources selectively, or ensure certain nodes are used for particular tasks.
+
+2) node affinity and pod affinity? 
+
+3) how to check the logs of a pod or deployment?
+Ans:- kubectl logs <pod_name>/<deployment_name>
+
+4) how to check how many pods are running
+Ans:- kubectl get po -A
+
+5) what are deployment strategy used in your project?
+
+6) what is init container?
+Ans:-In Kubernetes, an "init container" is a special type of container that runs before the main containers within a pod.
+Init containers are used to perform setup or initialization tasks that are necessary for the application containers to start and run successfully.
+The tasks which it generally performs are
+a)Data preloading ,b)secrets and credentials c)Network setup
+d)Preparation and Configuration
+Init containers are defined below the container section in the pod manifest file.
+
+7) what is statefullset?
+Ans:- Statefulset is used for the stateful appliactions that require unique identities,stable network identifiers and persistent storage.
+statefulset is used for the applications such as database,key-value stores and distribution system where each pod maintain its own identity & state.
+
+8) what is ingress:-
+Ans:-Kubernetes Ingress is a powerful way to manage external access to services within your cluster and provides essential features for routing and securing incoming traffic. It allows you to define routing rules and handle HTTPS termination, making it a fundamental component for exposing applications to the internet or to internal users within a Kubernetes cluster.
+
+9) difference between headfull and headless service?
+
+10) difference between secret and configmap?
+Ans:- secret is used to store sensitive/confidential data such as passwords and tokens whereas configmaps is used to store non-confidential data such as environment variables.
+
+11) what is livenessprobe and readynessprobe?
+Ans:- Liveness Probe:
+The livenessProbe is a configuration option in a Kubernetes pod that defines a health check for the container. It determines whether the container is still running correctly and should continue to be part of the pod.
+Kubernetes periodically checks the container's health based on the configured livenessProbe parameters. If the probe fails (e.g., the container's process crashes or becomes unresponsive), Kubernetes takes action, such as restarting the container or the entire pod, depending on the configured failureThreshold and periodSeconds.
+
+ReadinessProbe:
+The readinessProbe is another configuration option in a Kubernetes pod that defines a different type of health check. It determines whether the container is ready to start receiving traffic.
+
+12) how to access other pods in a cluster?
+Ans:-It is done by using ClusterIP/nodeport service/load balancing/ingress controller/port forwarding.
+
+13) what is a pod?
+Ans:- It is the smallest object in the k8s cluster.
+It also represent a set of running containers.
+Containers running in it and within the container application runs.
+
+14) how you will make sure that the database should start first and then application?
+
+15) Types of storage class used in your project?
+
+16) difference between statefullset and stateless?
+Ans:- Statefulset is used for the stateful appliactions that require unique identities,stable network identifiers and persistent storage.
+statefulset is used for the applications such as database,key-value stores and distribution system where each pod maintain its own identity & state.
+Deployment are primarily used for the managing stateless applications such as webservers and microservices.
+Also we can't attach pvc to it this makes it suitable for the stateless applications.
+
+17) describe kubernetes architecture?
+Master Node:
+There are 4 components which is present on the k8s Master node
+a)kube-apiserver:Kube-apiserver is a critical component of the Kubernetes control plane. It serves as the front-end for the Kubernetes control plane and provides the API through which all interactions with the cluster, including cluster management and application deployment are made. 
+b)ETCD:- It stores the all master and worker node information(cluster level information)
+c)kube-scheduler:- Kube-scheduler is responsible for distributing pods across the worker nodes.
+d)Controllers:-It is responsible for managing nodes and pods when they're go down.
+  1-Node Controller
+  2-Replication Controller
+Worker Node:
+Below are the components of which is present on worker node
+1)Kubelet:-It is an agent running on every worker node,it'll make sure that the containers are running in a pod on node.
+2)kube-proxy:-It maintains network rules, and this rules allows communication to your pod
+3)pods:- Containers run in it and within the container application runs.
+
+18) difference between PV and pvc
+Ans:-
+
+19) 2 containers are running inside a pod if one container goes down then will it affect other running container
+
+20)  Update the password in secret without restarting the pod or deployment ,is it possible ?
+
+21) how to rollback the deployment?
+Ans:-Rolling back a deployment in Kubernetes involves reverting to a previous version of the application that was deployed successfully. To perform a rollback, you can use the kubectl command-line tool or update the deployment's YAML manifest.
+a) kubectl rollout history deployment <deployment_name> -n <name_space>
+---->> After this we need to notedown on which version of deployment we want to go.
+b) kubectl rollout undo deployment <deployment_name> --to-revision=<revision_number>
+--->> After firing this cmd rollout has been initialize
+c) kubectl rollout status deployment <deployment_name>
+---->> This cmd is used to see the status of rollback. 
+
+22) what is the reason for pod eviction?
+Ans:-Resource constraints/node failure/out of memomy/node drain/node resources pressure etc.
+
+23) pod is in pending state ,what are the possible reasons?
+Ans:- This may be happen if the image we chose is not proper or network issues or it may be happen if there's not enough space.
+
+24) how you will make sure that in rolling update strategy 2 pods are always available?
+
+25) crashloopbackoff, what are the possible reasons?
+Ans:- Application error/image issue/network issue/storage issue/missing dependencies/Incorrect configuration etc.
+
+26) why you are using 3 master node in production?
+
+27) how you will make sure that pod should be running on a specific node?
+
+28) how to check what are the activities performed by the container while creating the pod?
+Ans:- kubectl describe pod <pod_name> -n <name_space>
+                             or
+      kubectl logs <pod_name> -c <container_name> -n <name_space> 
+29) how to get the ip of a pod ?
+Ans:- kubectl describe pod <pod_name> -n <name_space>
+
+30) which network plugin you are using?
+Ans:-We've used Weave Net as a network plug-in.
+There are also some popular network plugins present in the market like calico,flannel,cilium etc.
+
+31) how you are monitoring the kubernetes cluster and the containers?
+Ans:- Prometheus and Grafana
+Prometheus is an open-source tool which is used to collect,store and query metrics on the k8s cluster and application.
+Grafana is often used with Prometheus to create dashboards and visualize metrics.
+
+32) Job should be terminated after 40 seconds ?
+Ans:- ActiveDeadLineSeconds: 40

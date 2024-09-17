@@ -1,0 +1,89 @@
+Terraform :- 
+Terraform:
+===========================
+1) what is Iac? and why terraform?
+Ans:- Iac is Infrastructure as code, this is the process of creating,modifying,managing and deleting any kind of resources through a code, which is automatically done.
+Terraform works on the principle of API's as a code,it means terraform is the one single tool which can automate our entire infrastructure. It also supports a lot of providers whether it may be aws,azure,gcp, on premises etc.
+ 
+
+
+
+
+
+
+
+
+1) What is statefile and what is the use of it ?
+Ans:- Statefile is the file inwhich all the infrastructure information is stored and it keep the record of created resources or resources it is managing.
+
+2) where you are keeping the statefile ?
+Ans:- Statefile is very crucial as it has all the resources information so it is very necessary to keep this file in a safe manner, we store it remotely in a central location and giving access of it only to an authorized individual,commonly used cental location is AWS S3/AZURE BLOB STORAGE.
+
+3) how to declare a varible ?
+Ans:- We can declare variables in the ".tf" files in the variables block and calling them 
+
+4) what is the difference between provisioner and provider?
+Ans:-Provider is responsible for defining and managing resources on a specific infrastructure platform or service such as AWS, Azure, Google Cloud or a custom cloud or service.
+Provisioner is used to configure a resource after it has been created by Terraform. It allows you to run scripts, cmds or tasks on a resource to customize its behavior or perform actions not natively supported by Terraform or the provider.
+
+5) how to pass a value from one resource block to another ?
+Ans:- We can do it by declaring output variables.
+After configuration done in the output variable we have to fire terraform apply cmd.
+
+
+7) what is the difference between Terrform init and terraform apply?
+Ans:-"terraform init" is the first cmd,it iniatialize the terraform working directory by looking at the provider block and downloads the necessary plugins and all this stores in the .terraform directory.
+"terraform apply" cmd executes the create/modify of the resources.
+it also sees if there is any changes made in the configuration file.
+
+8) how to validate the terraform file ?
+Ans:- terraform file can be validated by "terraform validate" cmd.
+
+9) what terraform plan does?
+Ans:- It sees what is the requirments given in the .tf files and what needs to be executed.
+It also sees what needs to be change from current state to desired state.
+
+10) how to create 10 ec2 instance using the same script ? 
+Ans:- We can do it by adding one parameter of instance_count in the ".tf" file.
+eg:- "instance_count = 10"
+
+11) By mistake if you downgrade the instance from t2.large to t2.micro ,then what will happen when you run the terraform script?
+Ans:- If u downgrade the instance type manually through the AWS console then there'll be definitely conflict happens bcos "terraform.tfstate" has previous info of instance and it can't track this thing and when u fire terraform script then terraform identifies as a drift or change.If we don't want this type drift its the best practice to do everything by only whether console or terraform.After all this if we really want to resolve this issue then we've to intervene in it manually.
+
+12)what is statelock and how to do it in terraform?
+Ans:-In Terraform, state locking is a mechanism that prevents concurrent operations on the same state. It's important to ensure that only one user or process can modify the state at a time to avoid conflicts. Terraform supports state locking through backends that store the statefile, such as Amazon S3, Azure Storage, or HashiCorp Consul.
+
+13)what are modules in terraform?
+Ans:- modules are nothing but the logical grouping of resources.
+
+
+
+1)What is Terraform, and how does it differ from other configuration management tools?
+
+2)Explain the basic components of a Terraform script.
+
+3)How does Terraform maintain the state? Why is state management important?
+
+4)What is the difference between Terraform's provisioners and its modules?
+
+5)How can you pass variables to a Terraform script, and what are the different methods of variable assignment?
+
+6)Describe the main differences between Terraform's "local-exec" and "remote-exec" provisioners.
+
+7)How can you manage dependencies between resources in Terraform?
+
+8)What are Terraform workspaces, and how do they differ from environments in other configuration management tools?
+
+9)How does Terraform handle the concept of remote backends, and why are they important in a production environment?
+
+10)How would you secure sensitive information, such as API keys or access credentials, in your Terraform scripts?
+
+11)What are the benefits and drawbacks of using Terraform for managing infrastructure compared to other tools like CloudFormation or Ansible?
+
+12)How do you handle the potential drift between the defined infrastructure state and the actual state in Terraform?
+
+13)Explain the process of creating reusable infrastructure with Terraform modules and how you can manage their versions.
+
+14)Can you describe a scenario where you encountered a complex issue in your Terraform configuration and how you resolved it?
+
+15)What best practices do you follow when writing Terraform configurations to ensure they are maintainable and scalable over time?

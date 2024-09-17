@@ -1,0 +1,23 @@
+**INTRODUCTION**
+
+Myself Malik I'm working as a DevOps Engineer at Cognizant and my payroll is with Textcode technologies and i have total 4+ years of experience,in that i've devops relevant experience is approx. 3 years , and my day-to-day activities includes Developing various Kubernetes Objects like Pods, Replica Sets, Deploypment, Daemon Set,State full Set, Services, Persistent Volumes, Secrets, Configmaps and Performed all day-to-day GIT support for Continuous Development.
+In addition to this I am Responsible for maintaining Central repositories like setup projects, giving permissions, creating Branches and protecting them as per the need and helping with the merge requests in GitHub.
+Set up EKS cluster from scratch using eksctl to various environment like dev stage and prod.
+Experience in Docker installation and image setup. Creating custom image from a Dockerfile.
+
+Experience in setting up Monitoring &Alerting process using Prometheus, Grafana to monitor Kubernetes Cluster.
+Good experience in implementing CI/CD Pipelines for Automating Development, Testingand Deployment process using Jenkins Pipeline.
+In my organisation i'm responsible for maintaining CI/CD pipeline, to achieve that i used an orchestrator called jenkins, apart from this i have worked on tools like git,jira,docker,k8s,terraform, ansible, prometheus and grafana.
+
+For saas(software as a service) i used AWS, In AWS i worked on ec2,vpc,s3,Route-53,IAM,EKS,ECR,RDS etc
+
+Coming to my daily activities, my work is based on the ticketing system whenever there's a ticket arises i.e; developers,testers,operations etc they have any issue i try to solve it as per the priority of the issue.
+
+I have a experience of writing dockerfile,docker-compose for microservices of the docker and i also write shell scripts to avoid repeatative tasks when and where it is required.
+
+I have also experience of writing yaml files for k8s deployment,services and other related configurations, also i have hands-on on the writing terraform .tf files to automate the infra.
+
+Apart from these i worked on the ad-hoc requests via email in case of priority. we have sprint based working culture where there's a meeting with the team manager weekly or 15 days.
+We do have daily DSU's(Daily standup meetings) to get the status update or feedback on tasks.
+
+So, these are my brief intro and my day to day activities. 

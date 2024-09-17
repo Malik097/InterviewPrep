@@ -1,0 +1,64 @@
+**GIT INTERVIEW QUESTIONS**
+
+1) what is git ?
+Ans:- Git is a version controlling tool/sourcecode management tool(scm).
+These tools are used to helps software team to manage changes to the source code over the time.
+Most widely used modern version controlling system in the world today is "git".
+
+2)How do you initialize a Git repository in a local directory?
+Ans:- It is done by using cmd "git init".
+
+3) what is branching and need for branching and branching strategy used in ur project?
+Ans:- Branching is provided in git so that the developers can create code related to different functionalities on separate branches.
+This helps the development team in creating the code in an unclutterd way.Later this code can be merged with master/main branch.
+**Master branch is the default branch in git**
+  We have used feature branch for the development of new features. And Bug Fix Branch are created to address specific bugs or issues in the code.and also we've used hotfix branch to address critical issues or security vulneraibilty in the production code.and also we've this release branch which is  created when preparing for a new software release.
+
+4) What is the purpose of the git branch command, and how do you create and switch between branches?
+Ans:- "git branch" cmd is used to see how many branches are there.
+We can create a branch by using this cmd "git branch <branch_name>" and to switch from one branch to another it is done by using this cmd "git checkout <branch_name>".
+
+5)Explain the difference between git pull and git fetch?
+Ans:- "git fetch" fetches changes from the remote repository but does not perform automatic merging. It updates remote-tracking branches.
+"git pull" fetches changes and automatically attempts to merge them into the currently checked-out branch.
+
+6)What is the difference between git rebase and git merge?
+Ans:- The main difference between git merge and git rebase is that git merge is a way of combining changes from one branch (source branch) into another branch (target branch) where as git rebase is a way of moving the changes from one branch onto another branch.
+"git rebase <branch_name> <parent_branchname>"
+"git merge <branch_name>"
+
+7) what is the purpose of .gitignore?
+Ans:- This cmd is used to ignore any files.
+ex:- If i've 10 files 5 of them are .java and 5 of .class, now i want to filter .java files and move to the local repo.
+---->> vi .gitignore
+---->> {INSERT MODE}
+---->> *.class 
+---->>:wq!  
+It will remove all the .class files.
+
+8)How to rearrange the commits and how to selectively pickup commits from child branch and also how to merge the commits?
+Ans:-  Before rearranging the commits:-
+        a     b      c       d     e ---> commit name
+
+After rearranging the commits:-
+        a     c      d       e     b 
+>>>>>> This can be done by "git rebase -i Head~4"
+i-interactive mode
+4-remaining commits
+**first commit will not be changed**
+
+We can pickup commits from child branch by using cherry-pick option
+"git cherry-pick <commit_id>  <commit_id>"
+
+We can merge the commits by using 
+"git rebase -i Head~4"
+after this onn insert_mode(i) and then replace "PICK" with "SQUASH" then :wq! to save changes.
+
+9)i want to revert my commit how can i do this?
+ans: git revert <commit_id>
+
+10)i want to go to untracked section from staging area?
+ans: git reset 
+
+
+ 

@@ -1,0 +1,166 @@
+**DOCKER INTERVIEW QUESTIONS**
+📌 Docker Interview Questions
+1)What is Docker, and why is it important in the DevOps world?
+Ans:- Docker is an containerization platform that packages your    code its dependencies and libraries into something known as     containers.These containers can run on any platform or o.s which  supports docker.
+
+2)Explain the difference between Docker containers and virtual     machines (VMs). When would you choose one over the other?
+Ans:-
+ Virtualisation: 
+- In virtualisation there is a need of guest operating system.
+- we need to allocate some hardware configuration.
+- Apllications are not run that smoothly as compared to  containerisation bcos of hardware qouta allocation. 
+- It is restricted to use only given hardware allocating  properties.
+
+ Containerisation:
+- In containerisation there is no need of guest operating system.
+- No hardware allocation is required.
+- If application wants more hardware requirement,it can take it  from the ec2(in case of AWS). 
+- Application which is running on Docker is called as Container.
+
+3)How do you install Docker on a Linux system? Can you briefly    describe the installation steps?
+Ans:-We can install docker on a linux machine with the help of   docker documentation or we can also install it with a single cmd  "sudo apt-get install -y docker.io". 
+ But installing docker with single line cmd is not recommended   bcos of security issues,lack of update,transperancy and   compatibility issue.   
+
+4)What is a Docker image, and how is it different from a Docker  container?
+Ans:- Docker image is nothing but the combination of binaries and  libraries, in simple words its a software.
+ Docker container is the application which is running on the   Docker. With the help of docker image only we can make   container.Containers can be created, started, stopped, and   deleted, while images remain immutable and can be used to create  multiple containers.
+
+5)How do you create a Docker image from a Dockerfile? Can you  provide an example of Dockerfile and explain its contents?
+Ans:-Dockerfile is a simple file inwhich there r some predefined   keywords are used to create an customised image with the base   image.
+ex:
+ FROM nginx
+ RUN sudo apt-get update && sudo apt-get install -y git
+ EXPOSE 7070
+
+ In the above file FROM is used for taking the base image,RUN is  used to install some packages, and EXPOSE is used to expose the  container on the web.
+
+6)What is a Docker container and how do you run one from an  image?
+Ans:-Docker container is nothing but the application which is  running on docker.
+ex: docker run --name nginx -d -p 8080:80 nginx
+
+7)Explain the concept of Docker registries. What is the default  Docker registry, and how can you use other registries like  Docker Hub or a private registry?
+Ans:-Registries is the location where docker images are saved.
+ Default docker registry is HUB.DOCKER.COM. we can push our  customised images in it. 
+
+8)How do you manage multiple containers in a Docker environment?  Are there any tools or orchestration frameworks you are familiar  with?
+Ans:-We can manage multiple containers with the help of docker- compose.
+ There are many orchestration tools available in the market from  which i'm familiar with k8s and docker swarm, as docker swarm is  not good as compared to k8s so we use k8s in the production  environment.
+
+9)What is Docker Compose, and how does it simplify the management  of multi-container applications?
+Ans:-Docker-Compose is a feature of docker using which we can  create multicontainer architecture using yaml files.This yaml  file contains information about the containers that we want to  launch and how they have to be linked with each other.
+
+10)How can you pass environment variables to a Docker container?
+Ans:- docker run --image <container_name> -d -e MYSQL_ROOT_PASSWORD=<pass_word> mysql(image_name)
+
+11)What is Docker networking, and how can containers communicate  with each other?
+Ans:-Docker networking refers to the set of technologies and mechanisms that Docker provides to enable communication between containers and the host system or external networks. Docker networking is a critical aspect of containerization, as it allows containers to work together,access resources, and communicate with the outside world.
+ We can communicate with the containers by using bridge  network,host network and overlay network.
+
+12)What are the differences between the "bridge," "host," and  "overlay" network modes in Docker?
+Ans:-
+Bridge network:It is the default network of docker,when we   install docker, bridge network comes automatically with it.
+ Bridge network is also called as Docker0 network.
+ It's IP starts with 172.x.x.x.
+ Bridge network is used for communication between containers   which are present on the same docker host.
+
+Host Network:It is used when we want to use machine ip as the   container ip then we want to use host network.
+ we can achieve this thing only once.
+
+Overlay Network:Overlay network is used when we want to   communicate with the containers present on different host   machines.
+
+13)How do you persist data in Docker containers? What are Docker   volumes, and why are they useful?
+Ans:-We can persist the data in docker by attaching volumes to  the container.
+ There are 2 types of volumes in the docker 
+ 1)simple volume
+ 2) Docker volume container(shareable volume):
+ This type of volume is used to share the volume of one container  with other containers.
+ Even if all the containers are deleted,the volume will still be   available there on the dockerhost.
+
+14)Explain the concept of Docker swarm. How does it differ from   Kubernetes, and in what scenarios would you choose one over the   other?
+Ans:- 
+
+15)What are the best practices for securing Docker containers in   a production environment?
+Ans:-We can secure docker containers by using only official image and using minimal image size,using different networks for the different containers and also limiting the access control,storing the sensitive info in the secrets manager/vault etc.
+
+16)How do you monitor Docker containers and the resources they    consume? Are there any specific tools or metrics you use?
+Ans:-Docker comes with some built-in command to inspect containers like "docker stats <container_name/id>".We use Prometheus,it is an open-source tool which is used to collect,store and query metrics on the k8s cluster and application.
+Also Grafana is often used with Prometheus to create dashboards and visualize metrics.We can also set alerts on it.
+
+17)What are the steps involved in troubleshooting a Docker    container that is not running as expected?
+Ans:-If container is not running as expected then we first check whether it is in running state or not if it is in running state then after that we can see logs to know the reason for the downtime if we want more detail info then we can use docker inspect cmd,we can also see the resource utilization by docker stats cmd and also we can check network and port forwarding.
+
+18)How do you update a running Docker container without downtime?
+Ans:-This can be done by rolling updates.In k8s it is done by using deployment.
+
+19)Can you explain the concept of "Dockerfile best practices"?   What are some common mistakes to avoid when creating Docker   images?
+Ans:-1)Use base image
+ 2)Minimal the layers
+ 3)Use COPY instead of ADD as COPY is less error-prone.
+ 4)Reduce the no.of RUN cmd, use && to reduce no.of layers.
+
+20)How do you handle versioning and rolling back Docker images   and containers?
+Ans:-Use version tag whenever created custom image for easy identification also push the image to container registry so this centralizes image storage and makes it accessible to your deployment environment.
+Rolling back to a previous version in docker we need to create a new container with the version we want our container and before that makesure to delete or stop the current container and also makesure the data stores in that container is mounted somewhere before deleting it.If u r using docker-compose.yml for multi-container architecture then it'll easily update ur container without any down time.
+ 
+21) difference between add and copy ?
+Ans:-  with the help of "COPY" cmd we can copy the files from host machine to the container whereas "ADD" cmd does the same but it has some more feature that it can also used to download the files from remote servers. 
+
+22) difference between CMD and ENTRYPOINT ?
+Ans:- Cmd "CMD" is initially executed when the container is started whereas ENTRYPOINT is used to specify the default process that should be executed when container starts. 
+
+23) ADD . .
+Ans:- This "ADD .." cmd is used to copy the files and directories to and from the host machine.
+"." first refers the source,
+"." second refers the destination.
+
+24) what is docker file ?
+Ans:- It is a simple file inwhich there r some predefined keywords are used to create an customised image with the base image.
+
+25) how to check how many containers are running ?
+Ans:- docker container ls or docker ps -a(To see all stopped and running container).and also docker ps (to see all running containers)
+
+26) what is docker logging driver ? 
+Ans:- Docker provides several logging drivers that allow you to control where and how container logs are stored and processed. The choice of a logging driver depends on your specific use case and requirements.
+json-file (Default): The default logging driver for Docker is json-file. It writes container logs as JSON files on the local filesystem. You can find the log files in /var/lib/docker/containers on the host machine.
+There are some more logging drivers such as syslogs,awslogs,splunk etc. 
+
+27) what is difference between bridge network and custom bridge network?
+Ans:- In Bridge network(docker0 network) the IPs are assigned default whereas in the custom network user is defined the Ip.
+In custom bridge network we have the flexibility of assigning the subnet and public Ip or let Docker assign them automatically whereas this advantage we can't get in bridge network.
+
+28) difference between  overlay network and host network ?
+Ans:- Overlay networks are commonly used in container orchestration platforms like Docker Swarm and Kubernetes to provide communication between containers running on different nodes or hosts in a cluster.
+
+Host network mode allows a container to use the network stack of the host machine directly, without any network isolation or overlay.
+It is typically used when you want a container to have direct access to the host's network, which can be beneficial for performance and low-level network operations.
+
+29) what is port forwarding in docker what is the use of it ? 
+Ans:- Port forwarding is used to create communication between container and the outside traffic,and also for load balancing etc.
+ex. docker run --name nginx -d -p 8080:80 nginx
+
+30) how to login/enter to a container?
+Ans:- With the help of "-it" cmd we can enter into the container. 
+eg. docker run --name "container_name" -it busybox 
+
+31) what is docker system prune and docker image prune?
+Ans:- "docker system prune" this cmd will remove 
+All stopped containers
+All networks that are not used by at least one container
+All dangling images (i.e., images that are not tagged and not used by any container)
+All build cache, whereas "docker image prune" This command specifically targets unused images. It removes all images that are not referenced by any existing container, as well as all dangling images (unreferenced and untagged images).
+It's more focused on cleaning up the image part of Docker.
+
+32) how many types of volumes are there in Docker? (Local and network)
+Ans:- In Docker there are 2 types of volumes
+a)simple volume:-In this type of volume we can only store data from one container,and we can't share the volume of one container to another.
+b)docker volume container(shareable volume):- It is also known as reusable volume,the volume used by one container can be shared with other containers.
+
+33) How to check image vulnerability ?
+Ans:- We can check the image vulnerability by using the package name "trivy" it'll give us the complete info regarding image.
+eg: If we have a image called tomee with the tag latest
+---->>>>> trivy image tomee:latest
+It'll give us complete info about the tomee image with its tag.
+
+34) What is the use of docker expose and docker publish?
+Ans:-The expose and publish commands in Docker are used to make ports accessible to the outside world. The expose command tells Docker that a container is listening for traffic on a specific port, while the publish command maps a host port to a container port.
+------>>> docker publish 8080:80 <container_name>
